@@ -9,7 +9,7 @@ class thisError extends Error{
 class ForbiddenError extends thisError {
     
     constructor(message) {
-        super(`you are not the writter of this ${message}`)
+        super(`you are not the authorize to set ${message}`)
     }
 }
 

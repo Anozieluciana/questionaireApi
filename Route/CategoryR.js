@@ -5,7 +5,7 @@ const { postCategory, getAllCategory, GetOneCategory, deleteOneCategory } = requ
 
 
 router
-    .route("/category")
+    .route("/:id/category")
     .post(postCategory)
     .get(getAllCategory )
 

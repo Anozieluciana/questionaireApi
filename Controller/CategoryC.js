@@ -1,9 +1,15 @@
 const Categories = require("../Models/Categories");
-const { FieldRequiredError } = require("../ErrorHandler/Customized");
+const { FieldRequiredError, ForbiddenError } = require("../ErrorHandler/Customized");
+const user = require("../Models/userModel")
 
 
 const postCategory = async(req, res, next)=>{
     try{
+        const admin = req.params.id;
+        const findUser = await user.findById({_id:admin,isAdmin:true})
+        if(!findUser.isAdmin){
+            throw new ForbiddenError(`questions`)
+        }
       const {whichCategory} = req.body;
       if(!whichCategory) throw new FieldRequiredError(`a category`)
 
@@ -22,7 +28,7 @@ const postCategory = async(req, res, next)=>{
 
 const GetOneCategory = async(req, res, next)=>{
     try{
-        const oneCategory = await Categories.findById(req.params.id)
+        const oneCategory = await Categories.findById(req.params.id).populate("questions")
         res.status(200).json({
             status:"just this category",
             data:oneCategory

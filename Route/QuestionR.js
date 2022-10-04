@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { createQuestion, getAllQuestions } = require("../Controller/questionC")
+const { createQuestion, getAllQuestions, deleteOneQuestions } = require("../Controller/questionC")
 
 
 router
@@ -8,4 +8,8 @@ router
     .post(createQuestion)
     .get( getAllQuestions)
 
+router
+    .route("/:id/?/questionid")
+
+router.delete("/delete/:id/:catId", deleteOneQuestions)
 module.exports=router

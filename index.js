@@ -5,6 +5,7 @@ const port = process.env.PORT
 const userRoute = require("./Route/UserR")
 const categoryRoute = require("./Route/CategoryR")
 const questionR = require("./Route/QuestionR")
+const optionR = require("./Route/Options")
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.get("/", (req,res)=>{
 app.use("/api/user", userRoute)
 app.use("/api/cart", categoryRoute)
 app.use("/api/ask", questionR)
+app.use("/api/option", optionR)
 
 app.listen(port, ()=>{
     console.log("listening to server, port: " + port)
